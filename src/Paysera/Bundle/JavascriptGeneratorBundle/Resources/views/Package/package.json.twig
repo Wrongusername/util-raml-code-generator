@@ -25,10 +25,11 @@
     },
     {%  endif -%}
     "dependencies": {
-    {% for libraryConfig in get_external_libraries(api) %}
-    "{{ libraryConfig.name }}": "{{ libraryConfig.version }}"{{ loop.last ? '' : ',' }}
-    {% endfor %}
-},
+        "@babel/runtime": "^7.12.10"{% if get_external_libraries(api)|length > 0 %},{% endif %}
+        {% for libraryConfig in get_external_libraries(api) %}
+        "{{ libraryConfig.name }}": "{{ libraryConfig.version }}"{{ loop.last ? '' : ',' }}
+        {% endfor %}
+    },
     "devDependencies": {
         "@babel/cli": "^7.12.10",
         "@babel/core": "^7.12.10",
