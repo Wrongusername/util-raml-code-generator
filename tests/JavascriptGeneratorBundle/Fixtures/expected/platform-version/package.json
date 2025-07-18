@@ -22,6 +22,7 @@
         "node": ">=18.0"
     },
     "dependencies": {
+        "@babel/runtime": "^7.12.10",
         "@paysera/http-client-common": "^2.6.4"
     },
     "devDependencies": {
