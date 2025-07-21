@@ -67,7 +67,9 @@ class BuildJavascriptDistFilesStep implements ReleaseStepInterface
                 'Failed to install JS dependencies for Api "%s"',
                 $releaseStepData->getApiConfig()->getApiName()
             ));
-            $exception->setDebugMessage($installProcess->getErrorOutput());
+            $output = $installProcess->getOutput();
+            $error = $installProcess->getErrorOutput();
+            $exception->setDebugMessage("Output:\n$output\nError:\n$error");
             throw $exception;
         }
 
