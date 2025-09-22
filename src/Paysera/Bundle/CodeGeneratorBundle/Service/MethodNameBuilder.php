@@ -123,12 +123,21 @@ class MethodNameBuilder
         $part = $nameParts;
         do {
             if ($part->getPartName() !== '' && substr($part->getPartName(), 0 ,1) !== '{') {
-                $parts[] = ucfirst(StringHelper::singular($part->getPartName()));
+                $parts[] = ucfirst(StringHelper::singular($part->getPartName())) . $this->getPlaceholderSuffix($part);
             }
             $part = $part->getSubName();
         } while ($part !== null);
 
         return $parts;
+    }
+
+    private function getPlaceholderSuffix(UriNameParts $part): string
+    {
+        if ($part->getPlaceholder() === null || $part->getPlaceholder() === '') {
+            return '';
+        }
+
+        return  '_by' . ucfirst(str_replace(['{', '}'], ' ', $part->getPlaceholder()));
     }
 
     /**
