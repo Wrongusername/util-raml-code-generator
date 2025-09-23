@@ -137,7 +137,7 @@ class MethodNameBuilder
             return '';
         }
 
-        return  '_by' . ucfirst(str_replace(['{', '}'], ' ', $part->getPlaceholder()));
+        return  '_by' . ucfirst(str_replace(['{', '}'], '', $part->getPlaceholder()));
     }
 
     /**
